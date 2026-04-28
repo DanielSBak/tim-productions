@@ -210,3 +210,122 @@
         }
 
         .form-control {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            padding: 10px 0;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-bottom: 1px solid var(--chrome-light);
+        }
+
+        /* Chrome Button */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(to bottom, #333, #111);
+            border: 1px solid #555;
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            background: linear-gradient(to bottom, #555, #222);
+        }
+        
+        select option {
+            background-color: #111;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mercury-drop"></div>
+
+    <section class="hero">
+        <h1 class="chrome-text">TIM PRODUCTIONS</h1>
+        <p class="tagline">Fluid Reality</p>
+    </section>
+
+    <section class="gallery-section">
+        <h2 class="section-title">Selected Works</h2>
+        <div class="masonry-grid">
+            <div class="photo-placeholder photo-large">Image 1</div>
+            <div class="photo-placeholder">Image 2</div>
+            <div class="photo-placeholder">Image 3</div>
+            <div class="photo-placeholder photo-large">Image 4</div>
+            <div class="photo-placeholder">Image 5</div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">The Vision</h2>
+            <p class="about-text">
+                Based in <span class="highlight">Sacramento, California</span>, Tim sees the world not in static frames, but in fluid moments. 
+                Like liquid silver, light bends, shifts, and shapes our reality. Every photograph is a drop of time, suspended forever. 
+                He specializes in capturing the raw, the real, and the unspoken emotions that flow between us.
+            </p>
+        </div>
+    </section>
+
+    <section class="booking-section">
+        <form class="booking-form" onsubmit="event.preventDefault(); alert('Request sent! Tim will contact you soon.');">
+            <h2 class="section-title" style="font-size: 1.5rem;">Pour Your Vision</h2>
+            
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" class="form-control" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-control" required placeholder="hello@example.com">
+            </div>
+
+            <div class="form-group">
+                <label>Type of Shoot</label>
+                <select class="form-control" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="portrait">Portrait / Lifestyle</option>
+                    <option value="commercial">Commercial / Brand</option>
+                    <option value="event">Event / Automotive</option>
+                    <option value="creative">Creative Concept</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Estimated Hours</label>
+                <input type="number" class="form-control" min="1" max="24" required placeholder="E.g., 2">
+            </div>
+
+            <div class="form-group">
+                <label>Tell me about your idea</label>
+                <textarea class="form-control" rows="4" required placeholder="What kind of vibe are we creating?"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Request Custom Quote</button>
+        </form>
+    </section>
+
+</body>
+</html>
