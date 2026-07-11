@@ -1,311 +1,826 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIM PRODUCTIONS | Liquid Chrome</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050505;
-            --chrome-light: #ffffff;
-            --chrome-mid: #a8a8b0;
-            --chrome-dark: #3a3a40;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIM PRODUCTIONS — Photography, Sacramento</title>
+<meta name="description" content="Tim Productions — liquid, cinematic photography based in Sacramento, California. Portraits, automotive, brand and creative concepts.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c5 7 9 11.5 9 17a9 9 0 1 1-18 0c0-5.5 4-10 9-17z' fill='%23c9d3e4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS — liquid chrome studio
+   Obsidian ground, sterling chrome, glacier glass accent.
+   Single deliberate dark theme: the site is a lightless studio
+   in which chrome and glass are the only light sources.
+   ============================================================ */
+:root {
+    --obsidian:      #07080c;
+    --obsidian-soft: #0d0f15;
+    --sterling:      #f4f6f9;
+    --pewter:        #a4aab6;
+    --pewter-dim:    #6b7180;
+    --gunmetal:      #30343d;
+    --glacier:       #a8c6e8;
+    --glacier-glow:  rgba(168, 198, 232, 0.22);
+    --line:          rgba(244, 246, 249, 0.09);
+    --font-display:  'Cinzel', serif;
+    --font-body:     'Montserrat', sans-serif;
+    --ease-liquid:   cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--chrome-light);
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+* { box-sizing: border-box; }
 
-        /* Mercury Drop Animation */
-        .mercury-drop {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            width: 30px;
-            height: 50px;
-            background: radial-gradient(circle at 30% 30%, #fff, #999, #111);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            transform: translateX(-50%);
-            z-index: 100;
-            animation: fallAndSplash 3s ease-in forwards;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.2), inset 0 0 10px rgba(255,255,255,0.8);
-        }
+html { scroll-behavior: smooth; }
 
-        @keyframes fallAndSplash {
-            0% { top: -100px; transform: translateX(-50%) scale(1); opacity: 1; }
-            60% { top: 40vh; transform: translateX(-50%) scale(0.9, 1.2); opacity: 1; }
-            65% { top: 45vh; transform: translateX(-50%) scale(2.5, 0.3); border-radius: 50%; opacity: 1; }
-            75% { top: 45.5vh; transform: translateX(-50%) scale(6, 0.1); opacity: 0.5; }
-            100% { top: 46vh; transform: translateX(-50%) scale(10, 0); opacity: 0; }
-        }
+body {
+    margin: 0;
+    background-color: var(--obsidian);
+    color: var(--sterling);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+::selection { background: var(--glacier); color: var(--obsidian); }
 
-        .chrome-text {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            background-image: linear-gradient(
-                to bottom, 
-                #ffffff 0%, 
-                #a8a8b0 40%, 
-                #1a1a20 50%, 
-                #5a5a60 60%, 
-                #ffffff 100%
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 5px 10px rgba(255,255,255,0.15));
-            text-align: center;
-            margin: 0;
-            animation: fadeIn 4s ease forwards;
-            opacity: 0;
-        }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--obsidian); }
+::-webkit-scrollbar-thumb { background: var(--gunmetal); border-radius: 5px; border: 2px solid var(--obsidian); }
+::-webkit-scrollbar-thumb:hover { background: var(--pewter-dim); }
 
-        @keyframes fadeIn {
-            0%, 50% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+/* Filmic grain over everything, very faint */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-        .tagline {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--chrome-mid);
-            animation: fadeIn 5s ease forwards;
-            opacity: 0;
-        }
+/* ============================================================
+   INTRO — WebGL liquid-glass drop
+   ============================================================ */
+#drop-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 150;
+    pointer-events: none;
+    background: var(--obsidian);
+}
 
-        /* Gallery Section */
-        .gallery-section {
-            padding: 100px 5vw;
-        }
+/* CSS fallback drop, shown only when WebGL is unavailable */
+.mercury-drop {
+    display: none;
+    position: fixed;
+    top: -120px;
+    left: 50%;
+    width: 34px;
+    height: 52px;
+    z-index: 150;
+    pointer-events: none;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+    background:
+        radial-gradient(circle at 32% 26%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 26%),
+        radial-gradient(circle at 68% 78%, rgba(168,198,232,0.5) 0%, rgba(168,198,232,0) 40%),
+        radial-gradient(circle at 50% 45%, #d9dee8 0%, #7a8291 45%, #14161c 100%);
+    box-shadow:
+        0 14px 34px rgba(168, 198, 232, 0.18),
+        inset 0 -6px 12px rgba(0,0,0,0.55),
+        inset 0 4px 8px rgba(255,255,255,0.65);
+    animation: fallAndSplash 2.6s cubic-bezier(0.45, 0, 0.9, 0.4) forwards;
+}
 
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--chrome-light);
-            letter-spacing: 2px;
-        }
+html.no-webgl #drop-canvas { display: none; }
+html.no-webgl .mercury-drop { display: block; }
 
-        .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            grid-auto-rows: 300px;
-        }
+@keyframes fallAndSplash {
+    0%   { top: -120px; transform: translateX(-50%) scale(1, 1); opacity: 1; }
+    62%  { top: 42vh;   transform: translateX(-50%) scale(0.82, 1.28); opacity: 1; }
+    68%  { top: 46vh;   transform: translateX(-50%) scale(2.4, 0.34); border-radius: 50%; opacity: 1; }
+    80%  { top: 46.5vh; transform: translateX(-50%) scale(5.5, 0.12); opacity: 0.55; }
+    100% { top: 47vh;   transform: translateX(-50%) scale(9, 0.02); opacity: 0; }
+}
 
-        .photo-placeholder {
-            background: linear-gradient(135deg, #111, #222);
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #444;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
+html.reduced-motion #drop-canvas,
+html.reduced-motion .mercury-drop { display: none; }
 
-        /* Liquid hover effect on photos */
-        .photo-placeholder::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            transform: skewX(-25deg);
-            transition: all 0.7s ease;
-        }
+/* ============================================================
+   NAV — liquid glass pill
+   ============================================================ */
+.site-nav {
+    position: fixed;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(13, 15, 21, 0.55);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    translate: 0 -14px;
+    transition: opacity 0.9s var(--ease-liquid), translate 0.9s var(--ease-liquid);
+}
 
-        .photo-placeholder:hover::before {
-            left: 200%;
-        }
+html.intro-done .site-nav,
+html.reduced-motion .site-nav { opacity: 1; translate: 0 0; }
 
-        .photo-placeholder:hover {
-            border-color: rgba(168, 168, 176, 0.5);
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.05);
-        }
+.nav-brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    color: var(--sterling);
+    text-decoration: none;
+    padding: 6px 14px 6px 16px;
+}
 
-        .photo-large { grid-row: span 2; }
+.site-nav a.nav-link {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pewter);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: color 0.3s ease, background 0.3s ease;
+}
 
-        /* About Section */
-        .about-section {
-            padding: 100px 10vw;
-            background: radial-gradient(circle at center, #111 0%, #050505 100%);
-            text-align: center;
-        }
+.site-nav a.nav-link:hover,
+.site-nav a.nav-link:focus-visible {
+    color: var(--sterling);
+    background: rgba(244, 246, 249, 0.07);
+}
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+.site-nav a:focus-visible {
+    outline: 1px solid var(--glacier);
+    outline-offset: 2px;
+}
 
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--chrome-mid);
-            font-weight: 300;
-        }
+@media (max-width: 560px) {
+    .site-nav { top: 14px; padding: 6px 8px; }
+    .nav-brand { display: none; }
+    .site-nav a.nav-link { padding: 8px 12px; letter-spacing: 0.14em; }
+}
 
-        .highlight {
-            color: #fff;
-            font-weight: 400;
-        }
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+}
 
-        /* Booking Section */
-        .booking-section {
-            padding: 100px 5vw;
-            display: flex;
-            justify-content: center;
-        }
+/* Cold pool of light where the drop lands */
+.hero::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    width: min(80vw, 900px);
+    height: 46vh;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse 50% 42% at center,
+        rgba(168, 198, 232, 0.075) 0%,
+        rgba(168, 198, 232, 0.02) 45%,
+        transparent 70%);
+    z-index: -1;
+}
 
-        .booking-form {
-            background: rgba(15, 15, 18, 0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 50px;
-            width: 100%;
-            max-width: 600px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
+.chrome-text {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 5.4rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-align: center;
+    text-wrap: balance;
+    margin: 0;
+    padding-left: 0.16em; /* optically re-centre the tracking */
+    background-image: linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #cfd4dd 34%,
+        #62676f 48%,
+        #23262d 52%,
+        #767c88 60%,
+        #e9edf4 82%,
+        #ffffff 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 6px 18px rgba(168, 198, 232, 0.12));
+    position: relative;
+}
 
-        .form-group {
-            margin-bottom: 30px;
-            position: relative;
-        }
+/* Specular sweep across the chrome lettering */
+.chrome-text::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    padding-left: inherit;
+    background-image: linear-gradient(
+        115deg,
+        transparent 32%,
+        rgba(255, 255, 255, 0.85) 47%,
+        rgba(168, 198, 232, 0.6) 52%,
+        transparent 66%
+    );
+    background-size: 280% 100%;
+    background-position: 120% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: chromeSheen 7s var(--ease-liquid) 1.2s infinite;
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--chrome-mid);
-        }
+@keyframes chromeSheen {
+    0%       { background-position: 120% 0; }
+    38%, 100% { background-position: -60% 0; }
+}
 
-        .form-control {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            padding: 10px 0;
-            transition: border-color 0.3s ease;
-            box-sizing: border-box;
-        }
+.tagline {
+    margin: 26px 0 0;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.55em;
+    padding-left: 0.55em;
+    text-transform: uppercase;
+    color: var(--pewter);
+    text-align: center;
+}
 
-        .form-control:focus {
-            outline: none;
-            border-bottom: 1px solid var(--chrome-light);
-        }
+.hero-rule {
+    width: 1px;
+    height: 56px;
+    margin-top: 42px;
+    background: linear-gradient(to bottom, var(--pewter-dim), transparent);
+}
 
-        /* Chrome Button */
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background: linear-gradient(to bottom, #333, #111);
-            border: 1px solid #555;
-            border-radius: 30px;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
+/* Intro choreography: title surfaces out of the splash */
+.hero-inner > * {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(10px);
+    transition:
+        opacity 1.3s var(--ease-liquid),
+        transform 1.3s var(--ease-liquid),
+        filter 1.3s var(--ease-liquid);
+}
 
-        .submit-btn:hover {
-            border-color: #fff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            background: linear-gradient(to bottom, #555, #222);
-        }
-        
-        select option {
-            background-color: #111;
-            color: #fff;
-        }
-    </style>
+.hero-inner > .tagline   { transition-delay: 0.35s; }
+.hero-inner > .hero-rule { transition-delay: 0.65s; }
+
+html.intro-done .hero-inner > *,
+html.reduced-motion .hero-inner > * {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    padding-left: 0.4em;
+    text-transform: uppercase;
+    color: var(--pewter-dim);
+    opacity: 0;
+    transition: opacity 1.4s ease 1.2s;
+}
+
+html.intro-done .scroll-cue,
+html.reduced-motion .scroll-cue { opacity: 1; }
+
+.scroll-cue::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin: 12px auto 0;
+    border-radius: 50%;
+    background: var(--pewter-dim);
+    animation: cueDrip 2.4s ease-in-out infinite;
+}
+
+@keyframes cueDrip {
+    0%, 20%  { transform: translateY(0); opacity: 1; }
+    70%      { transform: translateY(14px); opacity: 0; }
+    100%     { transform: translateY(0); opacity: 0; }
+}
+
+/* ============================================================
+   SHARED SECTION FURNITURE
+   ============================================================ */
+section { padding: 130px 5vw; }
+
+.section-head {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-eyebrow {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.45em;
+    padding-left: 0.45em;
+    text-transform: uppercase;
+    color: var(--pewter-dim);
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--sterling);
+    margin: 0;
+    text-wrap: balance;
+}
+
+/* Small droplet divider between eyebrow and title */
+.section-drop {
+    display: block;
+    width: 14px;
+    height: 18px;
+    margin: 22px auto 0;
+    opacity: 0.55;
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition:
+        opacity 1s var(--ease-liquid),
+        transform 1s var(--ease-liquid);
+    transition-delay: var(--d, 0s);
+}
+
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+html.reduced-motion .reveal { opacity: 1; transform: none; transition: none; }
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gallery-section { padding-top: 40px; }
+
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    grid-auto-rows: 300px;
+    grid-auto-flow: dense;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.photo-plate {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(120% 90% at var(--gx, 25%) 0%, rgba(168, 198, 232, 0.06), transparent 55%),
+        linear-gradient(160deg, #14161d 0%, #0b0d12 60%, #07080c 100%);
+    display: flex;
+    align-items: flex-end;
+    transition:
+        transform 0.6s var(--ease-liquid),
+        border-color 0.6s ease,
+        box-shadow 0.6s ease;
+}
+
+.photo-plate.photo-large { grid-row: span 2; }
+
+/* liquid sheen that pours across on hover */
+.photo-plate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 38%,
+        rgba(244, 246, 249, 0.07) 49%,
+        rgba(168, 198, 232, 0.09) 53%,
+        transparent 64%
+    );
+    background-size: 260% 100%;
+    background-position: 115% 0;
+    transition: background-position 1.1s var(--ease-liquid);
+}
+
+.photo-plate:hover::before,
+.photo-plate:focus-visible::before { background-position: -45% 0; }
+
+.photo-plate:hover,
+.photo-plate:focus-visible {
+    transform: translateY(-5px);
+    border-color: rgba(168, 198, 232, 0.32);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(168, 198, 232, 0.08),
+        0 8px 40px var(--glacier-glow);
+}
+
+.photo-plate:focus-visible { outline: none; }
+
+.plate-meta {
+    width: 100%;
+    padding: 22px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    background: linear-gradient(to top, rgba(5, 6, 9, 0.85), transparent);
+}
+
+.plate-index {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--pewter-dim);
+}
+
+.plate-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--pewter);
+}
+
+.plate-soon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.62rem;
+    letter-spacing: 0.42em;
+    padding-left: 0.42em;
+    text-transform: uppercase;
+    color: var(--gunmetal);
+    white-space: nowrap;
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-section {
+    background:
+        radial-gradient(ellipse 60% 55% at 50% 42%, rgba(168, 198, 232, 0.045) 0%, transparent 65%),
+        radial-gradient(circle at center, #0c0e14 0%, var(--obsidian) 75%);
+}
+
+.about-content {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-text {
+    font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+    line-height: 2;
+    color: var(--pewter);
+    margin: 0;
+}
+
+.highlight { color: var(--sterling); font-weight: 400; }
+
+.about-sign {
+    margin-top: 48px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 0.35em;
+    padding-left: 0.35em;
+    color: var(--pewter-dim);
+}
+
+/* ============================================================
+   BOOKING — glass card
+   ============================================================ */
+.booking-section { display: flex; flex-direction: column; align-items: center; }
+
+.booking-form {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    padding: 54px clamp(26px, 6vw, 56px);
+    border-radius: 24px;
+    background: rgba(13, 15, 21, 0.62);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* glass edge catching the light along the top */
+.booking-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(168, 198, 232, 0.45), transparent);
+}
+
+.form-group { margin-bottom: 34px; position: relative; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 11px;
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--pewter-dim);
+    transition: color 0.3s ease;
+}
+
+.form-group:focus-within label { color: var(--glacier); }
+
+.form-control {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(244, 246, 249, 0.16);
+    color: var(--sterling);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 10px 2px;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    border-radius: 0;
+}
+
+.form-control::placeholder { color: var(--gunmetal); }
+
+.form-control:focus {
+    outline: none;
+    border-bottom-color: var(--glacier);
+    box-shadow: 0 12px 18px -14px var(--glacier-glow);
+}
+
+textarea.form-control { resize: vertical; min-height: 96px; }
+
+select.form-control { cursor: pointer; }
+select.form-control option { background-color: var(--obsidian-soft); color: var(--sterling); }
+
+.submit-btn {
+    position: relative;
+    width: 100%;
+    padding: 17px;
+    margin-top: 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(164, 170, 182, 0.35);
+    background: linear-gradient(to bottom, #33373f 0%, #191c22 55%, #101218 100%);
+    color: var(--sterling);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    padding-left: calc(17px + 0.3em);
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.2s ease;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.22) 50%,
+        transparent 65%
+    );
+    background-size: 250% 100%;
+    background-position: 115% 0;
+    transition: background-position 0.9s var(--ease-liquid);
+}
+
+.submit-btn:hover, .submit-btn:focus-visible {
+    border-color: rgba(168, 198, 232, 0.7);
+    box-shadow: 0 0 32px var(--glacier-glow), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.submit-btn:hover::before, .submit-btn:focus-visible::before { background-position: -35% 0; }
+
+.submit-btn:focus-visible { outline: 1px solid var(--glacier); outline-offset: 3px; }
+
+.submit-btn:active { transform: scale(0.985); }
+
+/* inline success state (replaces the old alert) */
+.form-success {
+    display: none;
+    text-align: center;
+    padding: 30px 0 10px;
+}
+
+.booking-form.sent .form-success { display: block; }
+.booking-form.sent .form-body { display: none; }
+
+.form-success .success-drop { width: 30px; height: 40px; margin: 0 auto 20px; }
+
+.form-success h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    margin: 0 0 14px;
+}
+
+.form-success p { color: var(--pewter); font-size: 0.95rem; margin: 0; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+    padding: 60px 5vw 44px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+    color: var(--pewter);
+}
+
+.footer-note {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pewter-dim);
+}
+
+/* ============================================================
+   MOTION SAFETY
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .chrome-text::after, .scroll-cue::after { animation: none; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+</style>
 </head>
 <body>
 
-    <div class="mercury-drop"></div>
+<canvas id="drop-canvas" aria-hidden="true"></canvas>
+<div class="mercury-drop" aria-hidden="true"></div>
 
-    <section class="hero">
-        <h1 class="chrome-text">TIM PRODUCTIONS</h1>
+<nav class="site-nav" aria-label="Main">
+    <a class="nav-brand" href="#top">TP</a>
+    <a class="nav-link" href="#works">Works</a>
+    <a class="nav-link" href="#vision">Vision</a>
+    <a class="nav-link" href="#book">Book</a>
+</nav>
+
+<header class="hero" id="top">
+    <div class="hero-inner">
+        <h1 class="chrome-text" data-text="TIM PRODUCTIONS">TIM PRODUCTIONS</h1>
         <p class="tagline">Fluid Reality</p>
-    </section>
+        <div class="hero-rule" aria-hidden="true"></div>
+    </div>
+    <a class="scroll-cue" href="#works">Scroll</a>
+</header>
 
-    <section class="gallery-section">
+<main>
+<section class="gallery-section" id="works">
+    <div class="section-head reveal">
+        <span class="section-eyebrow">Portfolio</span>
         <h2 class="section-title">Selected Works</h2>
-        <div class="masonry-grid">
-            <div class="photo-placeholder photo-large">Image 1</div>
-            <div class="photo-placeholder">Image 2</div>
-            <div class="photo-placeholder">Image 3</div>
-            <div class="photo-placeholder photo-large">Image 4</div>
-            <div class="photo-placeholder">Image 5</div>
-        </div>
-    </section>
+        <svg class="section-drop" viewBox="0 0 14 18" aria-hidden="true">
+            <path d="M7 0.8C9.9 5 12.6 8.1 12.6 11.4a5.6 5.6 0 1 1-11.2 0C1.4 8.1 4.1 5 7 0.8z"
+                  fill="none" stroke="#a4aab6" stroke-width="0.9"/>
+        </svg>
+    </div>
+    <div class="masonry-grid">
+        <figure class="photo-plate photo-large reveal" style="--gx:20%; --d:0s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">I</span><span class="plate-label">Portrait</span></figcaption>
+        </figure>
+        <figure class="photo-plate reveal" style="--gx:70%; --d:0.08s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">II</span><span class="plate-label">Automotive</span></figcaption>
+        </figure>
+        <figure class="photo-plate reveal" style="--gx:45%; --d:0.16s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">III</span><span class="plate-label">Lifestyle</span></figcaption>
+        </figure>
+        <figure class="photo-plate photo-large reveal" style="--gx:80%; --d:0.24s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">IV</span><span class="plate-label">Commercial</span></figcaption>
+        </figure>
+        <figure class="photo-plate reveal" style="--gx:30%; --d:0.32s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">V</span><span class="plate-label">Creative</span></figcaption>
+        </figure>
+        <figure class="photo-plate reveal" style="--gx:60%; --d:0.4s" tabindex="0">
+            <span class="plate-soon">Coming soon</span>
+            <figcaption class="plate-meta"><span class="plate-index">VI</span><span class="plate-label">Editorial</span></figcaption>
+        </figure>
+    </div>
+</section>
 
-    <section class="about-section">
-        <div class="about-content">
+<section class="about-section" id="vision">
+    <div class="about-content">
+        <div class="section-head reveal">
+            <span class="section-eyebrow">About</span>
             <h2 class="section-title">The Vision</h2>
-            <p class="about-text">
-                Based in <span class="highlight">Sacramento, California</span>, Tim sees the world not in static frames, but in fluid moments. 
-                Like liquid silver, light bends, shifts, and shapes our reality. Every photograph is a drop of time, suspended forever. 
-                He specializes in capturing the raw, the real, and the unspoken emotions that flow between us.
-            </p>
+            <svg class="section-drop" viewBox="0 0 14 18" aria-hidden="true">
+                <path d="M7 0.8C9.9 5 12.6 8.1 12.6 11.4a5.6 5.6 0 1 1-11.2 0C1.4 8.1 4.1 5 7 0.8z"
+                      fill="none" stroke="#a4aab6" stroke-width="0.9"/>
+            </svg>
         </div>
-    </section>
+        <p class="about-text reveal" style="--d:0.1s">
+            Based in <span class="highlight">Sacramento, California</span>, Tim sees the world not in static frames, but in fluid moments.
+            Like liquid silver, light bends, shifts, and shapes our reality. Every photograph is a drop of time, suspended forever.
+            He specializes in capturing the raw, the real, and the unspoken emotions that flow between us.
+        </p>
+        <div class="about-sign reveal" style="--d:0.2s">— TIM</div>
+    </div>
+</section>
 
-    <section class="booking-section">
-        <form class="booking-form" onsubmit="event.preventDefault(); alert('Request sent! Tim will contact you soon.');">
-            <h2 class="section-title" style="font-size: 1.5rem;">Pour Your Vision</h2>
-            
+<section class="booking-section" id="book">
+    <div class="section-head reveal">
+        <span class="section-eyebrow">Booking</span>
+        <h2 class="section-title">Pour Your Vision</h2>
+        <svg class="section-drop" viewBox="0 0 14 18" aria-hidden="true">
+            <path d="M7 0.8C9.9 5 12.6 8.1 12.6 11.4a5.6 5.6 0 1 1-11.2 0C1.4 8.1 4.1 5 7 0.8z"
+                  fill="none" stroke="#a4aab6" stroke-width="0.9"/>
+        </svg>
+    </div>
+    <form class="booking-form reveal" style="--d:0.1s" id="booking-form" novalidate>
+        <div class="form-body">
             <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" class="form-control" required placeholder="John Doe">
+                <label for="f-name">Your Name</label>
+                <input id="f-name" type="text" class="form-control" required placeholder="John Doe" autocomplete="name">
             </div>
 
             <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" class="form-control" required placeholder="hello@example.com">
+                <label for="f-email">Email Address</label>
+                <input id="f-email" type="email" class="form-control" required placeholder="hello@example.com" autocomplete="email">
             </div>
 
             <div class="form-group">
-                <label>Type of Shoot</label>
-                <select class="form-control" required>
-                    <option value="" disabled selected>Select an option...</option>
+                <label for="f-type">Type of Shoot</label>
+                <select id="f-type" class="form-control" required>
+                    <option value="" disabled selected>Select an option…</option>
                     <option value="portrait">Portrait / Lifestyle</option>
                     <option value="commercial">Commercial / Brand</option>
                     <option value="event">Event / Automotive</option>
@@ -314,18 +829,394 @@
             </div>
 
             <div class="form-group">
-                <label>Estimated Hours</label>
-                <input type="number" class="form-control" min="1" max="24" required placeholder="E.g., 2">
+                <label for="f-hours">Estimated Hours</label>
+                <input id="f-hours" type="number" class="form-control" min="1" max="24" required placeholder="E.g., 2">
             </div>
 
             <div class="form-group">
-                <label>Tell me about your idea</label>
-                <textarea class="form-control" rows="4" required placeholder="What kind of vibe are we creating?"></textarea>
+                <label for="f-idea">Tell me about your idea</label>
+                <textarea id="f-idea" class="form-control" rows="4" required placeholder="What kind of vibe are we creating?"></textarea>
             </div>
 
             <button type="submit" class="submit-btn">Request Custom Quote</button>
-        </form>
-    </section>
+        </div>
+
+        <div class="form-success" role="status">
+            <svg class="success-drop" viewBox="0 0 14 18" aria-hidden="true">
+                <path d="M7 0.8C9.9 5 12.6 8.1 12.6 11.4a5.6 5.6 0 1 1-11.2 0C1.4 8.1 4.1 5 7 0.8z"
+                      fill="none" stroke="#a8c6e8" stroke-width="0.9"/>
+            </svg>
+            <h3>Request received</h3>
+            <p>Tim will pour over the details and reply within 48&nbsp;hours.</p>
+        </div>
+    </form>
+</section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-brand">TIM PRODUCTIONS</div>
+    <div class="footer-note">Sacramento, California — Fluid Reality</div>
+</footer>
+
+<!-- ============================================================
+     Liquid-glass drop intro — raymarched WebGL
+     ============================================================ -->
+<script id="drop-frag" type="x-shader/x-fragment">
+precision highp float;
+
+uniform vec2  uRes;
+uniform float uTime;   // seconds since intro start
+uniform float uFade;   // 1 → 0 while the intro dissolves
+
+const float IMPACT = 1.35;   // moment the drop hits the pool
+const float PI = 3.14159265;
+
+float smin(float a, float b, float k) {
+    float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+    return mix(b, a, h) - k * h * (1.0 - h);
+}
+
+float sdEllipsoid(vec3 p, vec3 r) {
+    float k0 = length(p / r);
+    float k1 = length(p / (r * r));
+    return k0 * (k0 - 1.0) / k1;
+}
+
+float hash(float n) { return fract(sin(n) * 43758.5453); }
+
+// Distance to all the liquid (drop, pool, splash droplets)
+float mapLiquid(vec3 p) {
+    float d = 1e5;
+    float t = uTime;
+
+    if (t < IMPACT) {
+        // falling drop: accelerating, stretched by velocity
+        float f = t / IMPACT;
+        float y = mix(3.1, 0.30, f * f);
+        float stretch = 0.30 * f;
+        vec3 q = p - vec3(0.0, y, 0.0);
+        d = sdEllipsoid(q, vec3(0.30 - stretch * 0.10, 0.30 + stretch * 0.42, 0.30 - stretch * 0.10));
+        // trailing tail
+        vec3 qt = p - vec3(0.0, y + 0.34 + stretch * 0.35, 0.0);
+        float tail = sdEllipsoid(qt, vec3(0.10, 0.20 + stretch * 0.25, 0.10));
+        d = smin(d, tail, 0.18);
+    } else {
+        // pool spreading across the floor
+        float ts = t - IMPACT;
+        float R = 0.34 + 1.35 * (1.0 - exp(-ts * 2.1));
+        float H = 0.26 * exp(-ts * 1.55) + 0.035;
+        // radial wobble rolling outward through the pool surface
+        float r = length(p.xz);
+        float wob = sin(r * 22.0 - ts * 11.0) * exp(-r * 1.6) * exp(-ts * 1.3) * 0.05;
+        d = sdEllipsoid(p - vec3(0.0, 0.01 + wob, 0.0), vec3(R, H, R));
+
+        // crown splash: droplets thrown up and out, falling back in
+        for (int i = 0; i < 8; i++) {
+            float fi = float(i);
+            float a  = fi * (2.0 * PI / 8.0) + 0.55;
+            float sp = 0.85 + 0.65 * hash(fi * 12.9898);
+            float vy = 1.7 + 1.3 * hash(fi * 78.233);
+            float x  = cos(a) * sp * ts;
+            float z  = sin(a) * sp * ts * 0.55;
+            float y  = 0.28 + vy * ts - 4.4 * ts * ts;
+            float rad = max(0.075 - ts * 0.05, 0.0);
+            if (rad > 0.001 && y > -0.1) {
+                d = smin(d, length(p - vec3(x, max(y, 0.03), z)) - rad, 0.08);
+            }
+        }
+    }
+    return d;
+}
+
+// Liquid + floor
+float map(vec3 p) {
+    return min(mapLiquid(p), p.y);
+}
+
+vec3 calcNormal(vec3 p) {
+    const vec2 e = vec2(0.0015, 0.0);
+    return normalize(vec3(
+        map(p + e.xyy) - map(p - e.xyy),
+        map(p + e.yxy) - map(p - e.yxy),
+        map(p + e.yyx) - map(p - e.yyx)));
+}
+
+// Procedural studio environment: black void, one big softbox,
+// a cool rim strip, a faint horizon band — what chrome likes.
+vec3 env(vec3 d) {
+    float h = clamp(d.y * 0.5 + 0.5, 0.0, 1.0);
+    vec3 col = mix(vec3(0.003, 0.004, 0.006), vec3(0.020, 0.024, 0.034), pow(h, 1.8));
+    col += vec3(1.00, 1.00, 1.05) * pow(max(dot(d, normalize(vec3(-0.45, 0.80, 0.35))), 0.0), 34.0) * 2.6;
+    col += vec3(0.62, 0.72, 0.90) * pow(max(dot(d, normalize(vec3( 0.75, 0.25,-0.25))), 0.0), 55.0) * 1.7;
+    col += vec3(0.80, 0.86, 1.00) * smoothstep(0.35, 0.0, abs(d.y - 0.22)) * 0.035;
+    return col;
+}
+
+// Shade the liquid as glass-chrome: fresnel mix of refraction and reflection
+vec3 shadeLiquid(vec3 p, vec3 rd) {
+    vec3 n = calcNormal(p);
+    float F = 0.05 + 0.95 * pow(1.0 - max(dot(-rd, n), 0.0), 5.0);
+    vec3 refl = env(reflect(rd, n));
+    vec3 rrd  = refract(rd, n, 0.72);
+    if (dot(rrd, rrd) < 0.0001) rrd = reflect(rd, n);
+    vec3 refr = env(rrd) * vec3(0.86, 0.92, 1.00);
+    vec3 col = refr * (1.0 - F) * 0.9 + refl * F * 2.1;
+    vec3 L1 = normalize(vec3(-0.45, 0.80, 0.35));
+    vec3 L2 = normalize(vec3( 0.75, 0.25,-0.25));
+    vec3 rv = reflect(rd, n);
+    // broad softbox sheen sliding over the surface
+    col += vec3(0.55, 0.62, 0.75) * pow(max(dot(rv, L1), 0.0), 9.0)  * 0.30;
+    col += vec3(0.40, 0.48, 0.65) * pow(max(dot(rv, L2), 0.0), 12.0) * 0.22;
+    // pin-sharp key light speculars
+    col += vec3(1.0)              * pow(max(dot(rv, L1), 0.0), 240.0) * 4.5;
+    col += vec3(0.75, 0.83, 1.00) * pow(max(dot(rv, L2), 0.0), 320.0) * 3.0;
+    // cool glass rim
+    col += vec3(0.35, 0.45, 0.62) * pow(1.0 - max(dot(-rd, n), 0.0), 3.0) * 0.35;
+    return col;
+}
+
+// Floor: near-black gloss with expanding ripple rings after impact
+vec3 shadeFloor(vec3 p, vec3 rd) {
+    vec3 n = vec3(0.0, 1.0, 0.0);
+    float r = length(p.xz) + 0.0001;
+    if (uTime > IMPACT) {
+        float ts = uTime - IMPACT;
+        float phase = r * 16.0 - ts * 10.0;
+        float amp = exp(-r * 1.1) * exp(-ts * 1.05) * smoothstep(0.0, 0.35, ts) * 0.35;
+        float dwdr = cos(phase) * 16.0 * amp * 0.02;
+        vec2 g = p.xz / r;
+        n = normalize(vec3(-g.x * dwdr, 1.0, -g.y * dwdr));
+    }
+    vec3 base = vec3(0.005, 0.006, 0.009);
+    float F = 0.03 + 0.97 * pow(1.0 - max(dot(-rd, n), 0.0), 5.0);
+    vec3 rv = reflect(rd, n);
+
+    // one cheap reflection bounce so the liquid mirrors in the floor
+    vec3 col = base + env(rv) * F * 0.55;
+    float tt = 0.01;
+    for (int i = 0; i < 48; i++) {
+        vec3 q = p + rv * tt;
+        float d = mapLiquid(q);
+        if (d < 0.002) {
+            vec3 nn = calcNormal(q);
+            float FF = 0.05 + 0.95 * pow(1.0 - max(dot(-rv, nn), 0.0), 5.0);
+            col = mix(col, env(reflect(rv, nn)) * (0.35 + FF), 0.55 * F + 0.15);
+            break;
+        }
+        tt += d;
+        if (tt > 6.0) break;
+    }
+    // cool pool of light under the action
+    col += vec3(0.55, 0.68, 0.88) * exp(-r * r * 1.4) * 0.028;
+    return col;
+}
+
+void main() {
+    vec2 uv = (2.0 * gl_FragCoord.xy - uRes) / uRes.y;
+
+    // static studio camera, the faintest drift for life
+    vec3 ro = vec3(0.0, 0.78 + 0.01 * sin(uTime * 0.7), 3.1);
+    vec3 ta = vec3(0.0, 0.52, 0.0);
+    vec3 fw = normalize(ta - ro);
+    vec3 rt = normalize(cross(fw, vec3(0.0, 1.0, 0.0)));
+    vec3 up = cross(rt, fw);
+    vec3 rd = normalize(fw * 1.75 + rt * uv.x + up * uv.y);
+
+    vec3 bg = env(rd) * 0.5;
+    vec3 col = bg;
+
+    float t = 0.01;
+    for (int i = 0; i < 90; i++) {
+        vec3 p = ro + rd * t;
+        float d = map(p);
+        if (d < 0.0015) {
+            if (mapLiquid(p) < p.y) col = shadeLiquid(p, rd);
+            else                    col = shadeFloor(p, rd);
+            // distance fog folds the far floor into the void
+            col = mix(col, bg, smoothstep(2.8, 8.5, t));
+            break;
+        }
+        t += d * 0.9;
+        if (t > 9.0) break;
+    }
+
+    // vignette + grain, then tone map
+    float vig = 1.0 - 0.55 * dot(uv * 0.55, uv * 0.55);
+    col *= vig;
+    col += (fract(sin(dot(gl_FragCoord.xy + uTime * 60.0, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.008;
+    col = pow(max(col, 0.0), vec3(0.4545));
+
+    gl_FragColor = vec4(col * uFade, 1.0);
+}
+</script>
+
+<script>
+(function () {
+    'use strict';
+
+    var docEl = document.documentElement;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var params = new URLSearchParams(location.search);
+    var freezeT = params.has('t') ? parseFloat(params.get('t')) : null;
+
+    var INTRO_END  = 3.6;   // canvas fully dissolved
+    var REVEAL_AT  = 2.15;  // hero starts surfacing while pool still settles
+
+    function finishIntro() {
+        docEl.classList.add('intro-done');
+    }
+
+    // --- Scroll reveals -------------------------------------------------
+    var revealables = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !reduced) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        revealables.forEach(function (el) { io.observe(el); });
+    } else {
+        revealables.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // --- Booking form ---------------------------------------------------
+    var form = document.getElementById('booking-form');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        form.classList.add('sent');
+    });
+
+    // --- Intro ------------------------------------------------------------
+    if (reduced) {
+        docEl.classList.add('reduced-motion');
+        finishIntro();
+        return;
+    }
+
+    var canvas = document.getElementById('drop-canvas');
+    var gl = canvas.getContext('webgl', { antialias: true }) ||
+             canvas.getContext('experimental-webgl');
+
+    if (!gl) {
+        // CSS fallback drop runs instead; reveal on its own clock
+        docEl.classList.add('no-webgl');
+        setTimeout(finishIntro, 1900);
+        return;
+    }
+
+    function compile(type, src) {
+        var s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+            throw new Error(gl.getShaderInfoLog(s));
+        }
+        return s;
+    }
+
+    var prog;
+    try {
+        var vs = compile(gl.VERTEX_SHADER,
+            'attribute vec2 aPos; void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }');
+        var fs = compile(gl.FRAGMENT_SHADER, document.getElementById('drop-frag').textContent);
+        prog = gl.createProgram();
+        gl.attachShader(prog, vs);
+        gl.attachShader(prog, fs);
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+            throw new Error(gl.getProgramInfoLog(prog));
+        }
+    } catch (err) {
+        docEl.classList.add('no-webgl');
+        setTimeout(finishIntro, 1900);
+        return;
+    }
+
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var aPos = gl.getAttribLocation(prog, 'aPos');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    var uRes  = gl.getUniformLocation(prog, 'uRes');
+    var uTime = gl.getUniformLocation(prog, 'uTime');
+    var uFade = gl.getUniformLocation(prog, 'uFade');
+
+    var resScale = 1;
+
+    function resize() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        // cap the raymarch to ~1.4 Mpx; the soft scene upscales gracefully
+        var cap = Math.min(1, Math.sqrt(1400000 / Math.max(w * h * dpr * dpr, 1)));
+        var s = dpr * cap * resScale;
+        canvas.width  = Math.max(2, Math.floor(w * s));
+        canvas.height = Math.max(2, Math.floor(h * s));
+        gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var start = null;
+    var revealed = false;
+    var prev = null;
+    var slowFrames = 0;
+
+    // Choreography runs on the wall clock so a struggling GPU can
+    // never hold the page reveal hostage.
+    if (freezeT === null) {
+        setTimeout(function () { revealed = true; finishIntro(); }, REVEAL_AT * 1000);
+        setTimeout(function () {
+            if (canvas.parentNode) canvas.remove();
+        }, (INTRO_END + 0.3) * 1000);
+    }
+
+    function frame(now) {
+        if (start === null) start = now;
+        var t = freezeT !== null ? freezeT : (now - start) / 1000;
+
+        // struggling GPU → halve the internal resolution once
+        if (prev !== null && resScale === 1 && freezeT === null) {
+            if (now - prev > 80 && ++slowFrames > 4) {
+                resScale = 0.5;
+                resize();
+            }
+        }
+        prev = now;
+
+        // dissolve the studio into the page near the end
+        var fade = freezeT !== null ? 1.0
+                 : 1.0 - Math.min(Math.max((t - 2.55) / 0.95, 0), 1);
+
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.uniform1f(uTime, t);
+        gl.uniform1f(uFade, fade);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+        canvas.style.opacity = String(fade);
+
+        if (!revealed && t >= REVEAL_AT) {
+            revealed = true;
+            finishIntro();
+        }
+
+        if (freezeT !== null) return;           // frozen frame for review
+        if (t >= INTRO_END || !canvas.parentNode) {
+            if (canvas.parentNode) canvas.remove();
+            if (!revealed) finishIntro();
+            return;
+        }
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+})();
+</script>
 
 </body>
 </html>
